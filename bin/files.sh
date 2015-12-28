@@ -18,7 +18,7 @@ do
         continue
     fi
     echo $ligne
-    MD5SUM=$(md5sum """$ligne""" | cut -d " " -f 1)
+    MD5SUM=$(head -1000 """$ligne""" | md5sum | cut -d " " -f 1)
     if [ ! -f $DB_DIR_FILES/$MD5SUM ] 
     then
         echo "Referencing file $ligne"

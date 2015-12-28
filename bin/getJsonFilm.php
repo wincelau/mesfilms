@@ -11,7 +11,7 @@ if(!$search) {
 $searchJson=json_decode($search);
 
 if(!isset($searchJson->results) || !count($searchJson->results)) {
-
+	return;
 }
 
 echo json_encode(($searchJson->results[0]));

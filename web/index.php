@@ -16,7 +16,7 @@
             <div class="row">
                 <?php
 		$rootDir=dirname(__FILE__)."/..";
-		$config = json_decode(file_get_content($rootDir."/config/config.json"));
+		$config = json_decode(file_get_contents($rootDir."/config/config.json"));
                 $dirname = $config->db_dir."/files";
                 $dirnameinfos = $config->db_dir."/infos";
                 $dirnameimg = $config->db_dir."/img";
@@ -36,9 +36,11 @@
 
                     if(is_file($dirnameinfos."/".$file)) {
                         $infos = json_decode(file_get_contents($dirnameinfos."/".$file));
-                    }
+                    } else {
+			$infos = false;
+		    }
 
-                    if(!isset($infos)) {
+                    if(!$infos) {
 
                         continue;
                     }
